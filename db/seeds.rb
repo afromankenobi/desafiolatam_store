@@ -5,3 +5,54 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Category.destroy_all
+Product.destroy_all
+
+cat1 = Category.create(name: 'categoria1')
+cat2 = Category.create(name: 'categoria2')
+cat3 = Category.create(name: 'categoria3')
+
+cat1.products.create(
+  [
+    {
+      name: 'p1',
+      price: 100
+    },
+    {
+      name: 'p2',
+      price: 123
+    },
+    {
+      name: 'p3',
+      price: 1000
+    }
+  ]
+)
+cat1.products.last.destroy
+
+cat2.products.new(name: 'pc1', price: 1231)
+cat2.products.build(name: 'pc2', price: 1233)
+cat2.products.new(name: 'pc3', price: 1221)
+cat2.save
+cat2.product.last.destroy
+
+cat3.products.new(name: 'pw1', price: 312)
+cat3.products.build(name: 'pw2', price: 312)
+cat3.products.create(name: 'pw3', price: 312)
+cat3.save
+cat3.products.last.destroy
+
+# Product.last.update_attributes!(premium: true)
+premium = Product.last
+premium.premium = true
+premium.save
+
+Category.all.each { |c| c.name.upcase! }
+Category.all.each do |c|
+  c.name.upcase!
+end
+Category.all.each do |c|
+  c.name.upcase
+  c.save
+end
