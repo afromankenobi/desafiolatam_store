@@ -5,13 +5,12 @@ class Product < ApplicationRecord
   scope :last_n, -> (n) { limit(n) }
 
   validates_presence_of :price
-  validates :discount, in: 0..100
   # validates_presence_of :category #for rails4
 
   after_destroy :remove_category_if_empty
 
   def precio_final
-    price - (price * (discount / 100))
+    price - (price * (self.category.discount / 100))
   end
 
   private

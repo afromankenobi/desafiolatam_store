@@ -9,9 +9,9 @@
 Category.destroy_all
 Product.destroy_all
 
-cat1 = Category.create(name: 'categoria1')
-cat2 = Category.create(name: 'categoria2')
-cat3 = Category.create(name: 'categoria3')
+cat1 = Category.create(name: 'categoria1', discount: 0)
+cat2 = Category.create(name: 'categoria2', discount: 0)
+cat3 = Category.create(name: 'categoria3', discount: 0)
 
 cat1.products.create(
   [
@@ -35,11 +35,11 @@ cat2.products.new(name: 'pc1', price: 1231)
 cat2.products.build(name: 'pc2', price: 1233)
 cat2.products.new(name: 'pc3', price: 1221)
 cat2.save
-cat2.product.last.destroy
+cat2.products.last.destroy
 
 cat3.products.new(name: 'pw1', price: 312)
 cat3.products.build(name: 'pw2', price: 312)
-cat3.products.create(name: 'pw3', price: 312)
+cat3.products.build(name: 'pw3', price: 312)
 cat3.save
 cat3.products.last.destroy
 
@@ -48,11 +48,11 @@ premium = Product.last
 premium.premium = true
 premium.save
 
-Category.all.each { |c| c.name.upcase! }
+# Category.all.each { |c| c.name.upcase! }
 Category.all.each do |c|
   c.name.upcase!
 end
-Category.all.each do |c|
-  c.name.upcase
-  c.save
-end
+# Category.all.each do |c|
+#   c.name.upcase
+#   c.save
+# end

@@ -1,0 +1,22 @@
+<h1>Products#index</h1>
+
+<%= form_tag products_search_path, method: :get, class: "navbar-form navbar-left search-form" do %>
+  <%= text_field_tag(
+      :name,
+      params[:name],
+      placeholder: "Search",
+      class: "form-control"
+  ) %>
+  <%= text_field_tag(
+      :price,
+      params[:price],
+      placeholder: "Price",
+      class: "form-control"
+  ) %>
+  <%= submit_tag "Search!", class: "btn btn-primary" %>
+<% end %>
+<ul>
+  <% @products.each do |p| %>
+    <li><%= p.name %> | <%= p.category.name %> | <%= p.price %></li>
+  <% end %>
+</ul>
